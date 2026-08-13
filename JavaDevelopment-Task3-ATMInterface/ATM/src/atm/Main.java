@@ -10,11 +10,11 @@ import java.util.Scanner;
 
 // --- CLASS 1: Transaction ---
 class Transaction {
-    private String type;
-    private double amount;
-    private double balanceAfter;
-    private String timestamp;
-    private String note;
+    private final String type;
+    private final double amount;
+    private final double balanceAfter;
+    private final String timestamp;
+    private final String note;
 
     public Transaction(String type, double amount, double balanceAfter, String note) {
         this.type = type;
@@ -33,10 +33,10 @@ class Transaction {
 
 // --- CLASS 2: Account ---
 class Account {
-    private String userId;
-    private String pin;
+    private final String userId;
+    private final String pin;
     private double balance;
-    private List<Transaction> transactionHistory;
+    private final List<Transaction> transactionHistory;
 
     public Account(String userId, String pin, double initialBalance) {
         this.userId = userId;
@@ -118,7 +118,7 @@ class Account {
 
 // --- CLASS 3: Bank ---
 class Bank {
-    private Map<String, Account> accounts;
+    private final Map<String, Account> accounts;
 
     public Bank() {
         accounts = new HashMap<>();
@@ -143,8 +143,8 @@ class Bank {
 
 // --- CLASS 4: ATM ---
 class ATM {
-    private Bank bank;
-    private Scanner scanner;
+    private final Bank bank;
+    private final Scanner scanner;
     private Account currentAccount;
 
     public ATM(Bank bank) {
@@ -204,24 +204,15 @@ class ATM {
             String choice = scanner.nextLine().trim();
 
             switch (choice) {
-                case "1":
-                    displayTransactionHistory();
-                    break;
-                case "2":
-                    performWithdrawal();
-                    break;
-                case "3":
-                    performDeposit();
-                    break;
-                case "4":
-                    performTransfer();
-                    break;
-                case "5":
+                case "1" : displayTransactionHistory();
+                case "2" : performWithdrawal();
+                case "3" : performDeposit();
+                case "4" : performTransfer();
+                case "5" : {
                     System.out.println("\nThank you for choosing Oasis Bank. Have a great day! 👋");
                     running = false;
-                    break;
-                default:
-                    System.out.println("❌ Invalid option! Please enter a choice between 1 and 5.");
+                }
+                default : System.out.println("❌ Invalid option! Please enter a choice between 1 and 5.");
             }
         }
     }
@@ -295,8 +286,8 @@ public class Main {
         // Step 2: Seed Mock Account Data for Testing
         // User 1: ID = user123, PIN = 1234, Initial Balance = $1000.00
         // User 2: ID = user456, PIN = 5678, Initial Balance = $500.00
-        bank.addAccount(new Account("Raj", "1234", 5000.00));
-        bank.addAccount(new Account("Arun", "5678", 2500.00));
+        bank.addAccount(new Account("Arun", "1234", 1000.00));
+        bank.addAccount(new Account("Raju", "5678", 500.00));
 
         // Step 3: Launch ATM Simulation
         ATM atm = new ATM(bank);
