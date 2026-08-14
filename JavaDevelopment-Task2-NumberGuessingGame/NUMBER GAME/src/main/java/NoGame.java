@@ -1,7 +1,7 @@
-import java.util.Scanner;
-import java.util.Random;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Random;
+import java.util.Scanner;
 
 public class NoGame {
 
@@ -9,10 +9,10 @@ public class NoGame {
     private static int totalWins = 0;
     private static int totalLosses = 0;
     private static int roundCounter = 0;
-    private static List<String> roundSummaries = new ArrayList<>();
+    private static final List<String> roundSummaries = new ArrayList<>();
     
-    private static Scanner scanner = new Scanner(System.in);
-    private static Random random = new Random();
+    private static final Scanner scanner = new Scanner(System.in);
+    private static final Random random = new Random();
 
     public static void main(String[] args) {
         displayGameIntro();
@@ -24,12 +24,12 @@ public class NoGame {
             int choice = getIntInput(1, 5);
 
             switch (choice) {
-                case 1: playMode("Easy", 50, 10); break;
-                case 2: playMode("Medium", 100, 7); break;
-                case 3: playMode("Hard", 200, 5); break;
-                case 4: displayStats(); break;
-                case 5: quit = true; break;
-                default: System.out.println("Invalid choice."); break;
+                case 1 -> playMode("Easy", 50, 10);
+                case 2 -> playMode("Medium", 100, 7);
+                case 3 -> playMode("Hard", 200, 5);
+                case 4 -> displayStats();
+                case 5 -> quit = true;
+                default -> System.out.println("Invalid choice.");
             }
 
             // Play Again prompt directly after a game round finishes (Choices 1-3)
